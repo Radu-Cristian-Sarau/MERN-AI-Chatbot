@@ -12,7 +12,9 @@ type UserAuth = {
     signup: (name: string, email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
 }
+
 const AuthContext = createContext<UserAuth | null>(null); 
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
