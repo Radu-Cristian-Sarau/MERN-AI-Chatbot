@@ -1,26 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box, Avatar, Typography, Button, IconButton } from '@mui/material';
 import red from '@mui/material/colors/red';
 import { useAuth } from '../context/AuthContext';
 import ChatItem from '../components/chat/ChatItem';
 import { IoMdSend } from 'react-icons/io';
 
-const chatMessages = [
-    {role: "user", content: "Hello, how are you?"},
-    {role: "assistant", content: "I am a ChatBot, I don't have feelings."},
-    {role: "user", content: "Can you tell me a joke?"},
-    {role: "assistant", content: "Sure, here is one: Why did the tomato turn red? Because it saw the salad dressing!"},
-    {role: "user", content: "Haha, that was funny!"},
-    {role: "assistant", content: "I am glad you liked it."},
-    {role: "user", content: "Goodbye!"},
-    {role: "assistant", content: "Goodbye! Have a great day!"}
-];
-
 const Chat = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const auth = useAuth();
+    const [chatMessages, setChatMessages] = useState([]);
     const handleSubmit = async () => {
-        console.log(inputRef.current?.value);
+        const content = inputRef.current?.value as string;
+        
     };
     return (
         <Box sx = {{display: "flex", flex: 1, width: "100%", height: "100%", mt: 3, gap: 3, overflowX: "hidden"}}>
