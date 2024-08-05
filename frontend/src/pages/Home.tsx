@@ -7,7 +7,7 @@ const Home = () => {
     const theme = useTheme();
     const isBelowMd = useMediaQuery(theme.breakpoints.down('md'));
     return (
-        <Box width = {"100%"} height={"100%"} sx={{overflowX: "hidden"}}>
+        <Box width = {"100%"} height={"100%"}>
             <Box sx={{display: "flex", width: "100%", flexDirection: "column", alignItems: "center", mx: "auto", mt: 3}}>
                 <Box>
                     <TypingAnim/>
@@ -25,7 +25,7 @@ const Home = () => {
                         style={{width: "200px", margin: "auto"}}
                     />
                 </Box>
-                <Box sx={{ display: "flex", width: "100%", mx: "auto" }}>
+                <Box sx={{ display: "flex", mx: "auto" }}>
                     <img 
                         src="../public/chat.png" 
                         alt="chatbot"
@@ -36,7 +36,8 @@ const Home = () => {
                             borderRadius: 20,
                             boxShadow: "-5px -5px 105px #64f3d5",
                             marginTop: 20,
-                            marginBottom: 20
+                            marginBottom: 20,
+                            padding: 10
                         }} 
                     />
                 </Box>
