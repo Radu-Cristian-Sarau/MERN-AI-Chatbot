@@ -9,10 +9,10 @@ const Footer = () => {
                     padding: "20px",
                     minHeight: "20vh",
                     maxHeight: "30vh",
-                    marginTop: 50
+                    marginTop: 60
                 }}
             >
-                <p style={{ fontSize: "30px", textAlign: "center"}}>
+                <p style={{ fontSize: "30px", textAlign: "center", padding: "20px" }}>
                     Built by Radu-Cristian Sarău, 2024. Inspired by
                     <span>
                         <Link
