@@ -4,14 +4,26 @@ import red from '@mui/material/colors/red';
 import { useAuth } from '../context/AuthContext';
 import ChatItem from '../components/chat/ChatItem';
 import { IoMdSend } from 'react-icons/io';
+import { sendChatRequest } from '../helpers/api-communicator';
+
+type Message = {
+    role: "user" | "assistant";
+    content: string;
+};
 
 const Chat = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const auth = useAuth();
-    const [chatMessages, setChatMessages] = useState([]);
+    const [chatMessages, setChatMessages] = useState<Message[]>([]);
     const handleSubmit = async () => {
         const content = inputRef.current?.value as string;
-        
+        if (inputRef && inputRef.current) {
+            inputRef.current.value = "";
+        }
+        const newMessage: Message = { role: "user", content };
+        setChatMessages((prev) => [...prev, newMessage]);
+        const chatData = await sendChatRequest(content);
+        setChatMessages([...chatData.chats]);
     };
     return (
         <Box sx = {{display: "flex", flex: 1, width: "100%", height: "100%", mt: 3, gap: 3, overflowX: "hidden"}}>
