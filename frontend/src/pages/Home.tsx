@@ -7,7 +7,7 @@ const Home = () => {
     const theme = useTheme();
     const isBelowMd = useMediaQuery(theme.breakpoints.down('md'));
     return (
-        <Box width = {"100%"} height={"100%"}>
+        <Box width = {"100%"} height={"100%"} sx={{overflowX: "hidden"}}>
             <Box sx={{display: "flex", width: "100%", flexDirection: "column", alignItems: "center", mx: "auto", mt: 3}}>
                 <Box>
                     <TypingAnim/>
