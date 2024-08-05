@@ -4,7 +4,7 @@ import red from '@mui/material/colors/red';
 import { useAuth } from '../context/AuthContext';
 import ChatItem from '../components/chat/ChatItem';
 import { IoMdSend } from 'react-icons/io';
-import { getUserChats, sendChatRequest } from '../helpers/api-communicator';
+import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator';
 import toast from 'react-hot-toast';
 
 type Message = {
@@ -26,6 +26,18 @@ const Chat = () => {
         setChatMessages((prev) => [...prev, newMessage]);
         const chatData = await sendChatRequest(content);
         setChatMessages([...chatData.chats]);
+    };
+
+    const handleDeleteChats = async () => {
+        try {
+            toast.loading("Deleting Chats...", { id: "deletechats"});
+            await deleteUserChats();
+            setChatMessages([]);
+            toast.success("Deleted Chats Successfully", { id: "deletechats" });
+        } catch (error) {
+            console.log(error);
+            toast.error("Deleting Chats Failed", { id: "deletechats" });
+        }
     };
 
     useLayoutEffect(() => {
@@ -55,17 +67,19 @@ const Chat = () => {
                     <Typography sx = {{mx: "auto", fontFamily: "sans-serif", my: 4, p: 3}}>
                         You can ask questions related to various topics, but avoid sharing personal information.
                     </Typography>
-                    <Button sx = {{
-                        width: "200px", 
-                        my: "auto", 
-                        color: "white", 
-                        fontWeight: 700, 
-                        borderRadius: 3, 
-                        mx: "auto", 
-                        bgcolor: red[300],
-                        ":hover": {
-                            bgcolor: red.A400,
-                        },
+                    <Button 
+                        onClick={handleDeleteChats}
+                        sx = {{
+                            width: "200px", 
+                            my: "auto", 
+                            color: "white", 
+                            fontWeight: 700, 
+                            borderRadius: 3, 
+                            mx: "auto", 
+                            bgcolor: red[300],
+                            ":hover": {
+                                bgcolor: red.A400,
+                            },
                         }}
                     >
                         Clear Conversation
